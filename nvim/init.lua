@@ -22,7 +22,7 @@ vim.opt.mouse = ""
 vim.keymap.set({'n', 'i', 'v'}, '<C-s>', '<cmd>w<CR>', { noremap = true })
 
 -- Ctrl+Shift+N 用 . 运行当前脚本
-vim.keymap.set('n', '<C-S-n>', function()
+vim.keymap.set('n', '<C-n>', function()
   local file = vim.fn.expand('%:p')
   vim.cmd('w')
   vim.cmd('split | terminal . "' .. file .. '"')

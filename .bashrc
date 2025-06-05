@@ -54,8 +54,21 @@ parse_git_branch() {
 }
 
 # Custom bash prompt via kirsle.net/wizards/ps1.html
-export PS1="\[$(tput setaf 6)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 2)\]\h\[$(tput sgr0)\]\[$(tput setaf 7)\]:\[$(tput sgr0)\]\[$(tput setaf 5)\]\W\[$(tput sgr0)\]\[$(tput bold)\]\[$(tput setaf 3)\]\$(parse_git_branch)\[$(tput sgr0)\]\[$(tput setaf 7)\] \\$ \[$(tput sgr0)\]"
+if [[ -n $ZELLIJ ]]; then
+	PS1="\[$(tput setaf 1)\] \\$ \[$(tput sgr0)\] "
+else
+	eval "$(starship init bash)"
+fi
 
 if [[ -f "$HOME/.bashrc_secret" ]]; then
 	source "$HOME/.bashrc_secret"
 fi
+
+# kube editor
+export EDITOR="nvim"
+# kubectl complete
+source <(kubectl completion bash)
+source <(helm completion bash)
+alias z=zellij
+export LC_ALL=C
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
