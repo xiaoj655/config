@@ -28,3 +28,6 @@ vim.keymap.set('n', '<C-n>', function()
   vim.cmd('split | terminal . "' .. file .. '"')
 end, { noremap = true, silent = true })
 vim.keymap.set('n', '<C-q>', '<cmd>bd<CR>', { noremap=true, silent=true })
+
+require("config.lazy")
+
